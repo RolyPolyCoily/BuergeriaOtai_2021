@@ -50,7 +50,7 @@ df3$shape <- "normal"
 df3$shape[df3$FDR < 1e-5] <- "triangle"
 df3$FDR2 <- df3$FDR
 df3$FDR2[df3$FDR < 1e-05] <- 1e-05
-g <- ggplot()+geom_hline(yintercept=-log10(0.05),linetype="dotted",colour="gray50")+geom_vline(xintercept=c(-3,3),linetype="dotted",colour="gray50")+geom_point_rast(data=df3[df3$sig=="F",],aes(x=logFC,y=-log10(FDR2),shape=shape),colour="#c1c1c1",size=1)+geom_point_rast(data=df3[df3$sig=="U" | df3$sig=="D" ,],aes(x=logFC,y=-log10(FDR2),shape=shape,colour=sig),size=1)+scale_colour_manual(values=c("U"="#d11141","D"="#00aedb"))+theme_bw()+theme(legend.position="none")+xlab(expression(paste(log[2](FC))))+ylab(expression(paste(-log[10](italic(q)))))+theme_classic()+theme(strip.background=element_rect(fill=NA, color=NA),legend.position="NONE")
+g <- ggplot()+geom_hline(yintercept=-log10(0.05),linetype="dotted",colour="gray50")+geom_vline(xintercept=c(-3,3),linetype="dotted",colour="gray50")+geom_point(data=df3[df3$sig=="F",],aes(x=logFC,y=-log10(FDR2),shape=shape),colour="#c1c1c1",size=1)+geom_point(data=df3[df3$sig=="U" | df3$sig=="D" ,],aes(x=logFC,y=-log10(FDR2),shape=shape,colour=sig),size=1)+scale_colour_manual(values=c("U"="#d11141","D"="#00aedb"))+theme_bw()+theme(legend.position="none")+xlab(expression(paste(log[2](FC))))+ylab(expression(paste(-log[10](italic(q)))))+theme_classic()+theme(strip.background=element_rect(fill=NA, color=NA),legend.position="NONE")
 pdf("volcanoe.pdf", useDingbats=FALSE,width=3,height=3)
 g
 dev.off()
